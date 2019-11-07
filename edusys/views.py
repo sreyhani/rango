@@ -12,7 +12,9 @@ def signup(req: HttpRequest):
     if req.method == "POST":
         data = req.POST
         print(data)
-        user = User(username=data.get('username'),first_name=data.get('first_name'),last_name=data.get('last_name'),password=data.get('password1')[0],email=data.get('email'))
+        print(data.get('first_name'))
+        user = User(username=data.get('username'), first_name=data.get('first_name'), last_name=data.get('last_name'), email=data.get('email'))
+        user.set_password(data.get("password1"))
         user.save()
         return redirect('/')
     else:
