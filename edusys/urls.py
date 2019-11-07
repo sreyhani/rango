@@ -5,5 +5,5 @@ from edusys.views import *
 
 urlpatterns = [
     path('', home),
-    path('register/',signup),
+    path('signup/',signup),
 ]
