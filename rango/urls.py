@@ -20,5 +20,5 @@ import edusys
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('edusys.urls'))
+    path('', include('edusys.urls')),
 ]
