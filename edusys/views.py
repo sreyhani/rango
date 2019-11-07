@@ -69,8 +69,8 @@ def contact_us(req):
             send_mail(
                 title,
                 text,
-                '',
-                [''],
+                'testforwebelopers19@gmail.com',
+                ['mahdi.haji@yahoo.com'],
                 fail_silently=False,
             )
             return render(req, 'blank.html')
