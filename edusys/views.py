@@ -102,3 +102,7 @@ def setting(req):
             req.user.save()
         return redirect('/profile')
     return render(req,"setting.html")
+
+
+def create_new_course(req):
+    return render(req,"create_new_course.html")

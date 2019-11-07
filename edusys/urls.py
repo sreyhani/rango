@@ -13,4 +13,5 @@ urlpatterns = [
     path('profile/',profile,name = 'profile'),
     path('panel/',panel,name = 'panel'),
     path('setting/',setting,name = 'setting'),
+    path('create_new_course/',create_new_course,name='create_new_course')
 ]
