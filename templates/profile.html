@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>profile</title>
+</head>
+<body>
+{% extends "navbar.html" %}
+{% block body %}
+    <span id="text_first_name">{{ user.first_name }}</span>
+    <span id="text_last_name">{{ user.last_name }}</span>
+    <span id="text_user_name">{{ user.username }}</span>
+
+{% endblock %}
+</body>
+</html>

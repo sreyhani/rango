@@ -1,10 +1,12 @@
 from django.contrib.auth import authenticate, logout, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse, request
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
+
 
 # Create your views here.
 from edusys.forms import ContactUs
@@ -35,13 +37,22 @@ def logout_view(req):
 
 
 def signup(req: HttpRequest):
+    user_exists = 'نام کاربری شما در سیستم موجود است'
+    password_not_match = 'گذرواژه و تکرار گذرواژه یکسان نیستند'
     if req.method == "POST":
         data = req.POST
         print(data)
         print(data.get('first_name'))
-        user = User(username=data.get('username'), first_name=data.get('first_name'), last_name=data.get('last_name'),
+        my_user_name = data.get('username')
+        pass1 = data.get('password1')
+        pass2 = data.get('password2')
+        if User.objects.filter(username=my_user_name).count() != 0:
+            return render(req, "signup.html", context={'error': user_exists})
+        if pass1 != pass2:
+            return render(req, "signup.html", context={'error': password_not_match})
+        user = User(username=my_user_name, first_name=data.get('first_name'), last_name=data.get('last_name'),
                     email=data.get('email'))
-        user.set_password(data.get("password1"))
+        user.set_password(pass1)
         user.save()
         return redirect('/')
     else:
@@ -55,3 +66,8 @@ def contact_us(req):
             return render(req, 'blank.html')
     form = ContactUs()
     return render(req, 'contact_us.html', {'done': False, 'form': form})
+
+
+@login_required(login_url='/login')
+def profile(req):
+    return render(req, "profile.html", context={'user':req.user})
