@@ -6,8 +6,10 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 
-
 # Create your views here.
+from edusys.forms import ContactUs
+
+
 def home(req):
     return render(req, "homepage.html")
 
@@ -47,4 +49,9 @@ def signup(req: HttpRequest):
 
 
 def contact_us(req):
-    return
+    if req.method == 'POST':
+        form = ContactUs(req.POST)
+        if form.is_valid():
+            return render(req, 'blank.html')
+    form = ContactUs()
+    return render(req, 'contact_us.html', {'done': False, 'form': form})
