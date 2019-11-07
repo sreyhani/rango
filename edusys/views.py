@@ -37,9 +37,14 @@ def signup(req: HttpRequest):
         data = req.POST
         print(data)
         print(data.get('first_name'))
-        user = User(username=data.get('username'), first_name=data.get('first_name'), last_name=data.get('last_name'), email=data.get('email'))
+        user = User(username=data.get('username'), first_name=data.get('first_name'), last_name=data.get('last_name'),
+                    email=data.get('email'))
         user.set_password(data.get("password1"))
         user.save()
         return redirect('/')
     else:
         return render(req, "signup.html", context={})
+
+
+def contact_us(req):
+    return
