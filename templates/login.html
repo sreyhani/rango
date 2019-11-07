@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+{% extends "navbar.html" %}
+{% block body %}
+    <form action='{% url 'login' %}' class="ui form" id='login_form' method="POST">
+        {% csrf_token %}
+        <input class="ui input" name="username" type="text">
+        <input class="ui input" name="password" type="password">
+        <button class="ui button" type="submit">submit
+        </button>
+    </form>
+    {% if not error %}
+        <div id="error">
+            password is invalid
+        </div>
+    {% endif %}
+
+
+{% endblock body %}
+</body>
+</html>

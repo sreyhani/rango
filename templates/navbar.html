@@ -13,9 +13,12 @@
         <i class="ui home large icon"></i>
     </a>
     {#    <div class="ui right menu" id="navbar">#}
-    <a class="ui item" id="login">log in</a>
-    <a class="ui item" id="register">sign up</a>
-    {#    </div>#}
+    {% if not request.user.is_authenticated %}
+        <a class="ui item" id="login" href="/login">log in</a>
+        <a class="ui item" id="register" href="/signup">sign up</a>
+    {% else %}
+        <a class="ui item" id="logout" href="{% url 'logout' %}">logout</a>
+    {% endif %}
 </div>
 {% block body %}
 {% endblock %}
