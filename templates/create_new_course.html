@@ -7,6 +7,32 @@
 <body>
 {% extends "navbar.html" %}
 {% block body %}
-{%  endblock %}
+    <form class="ui form" id='make_course' method="POST" action="{% url 'create_new_course' %}">
+        {% csrf_token %}
+        <input class="ui" name='department' placeholder= "نام دانشکده">
+        <input class="ui" name="name" placeholder="نام درس">
+        <input class="ui" name="course_number" placeholder="شماره درس">
+        <input class="ui" name="group_number" placeholder="شماره گروه">
+        <input class="ui" name="teacher" placeholder="نام استاد">
+        <input class="ui" name="start_time" placeholder="ساعت شروع">
+        <input class="ui" name="end_time"placeholder="ساعت پایان">
+        <select name='first_day'>
+            <option value="0">شنبه</option>
+            <option value="1">یکشنبه</option>
+            <option value="2">دوشنبه</option>
+            <option value="3">سه‌شنبه</option>
+            <option value="4">چهارشنبه</option>
+        </select>
+        <select name='second_day'>
+            <option value="0">شنبه</option>
+            <option value="1">یکشنبه</option>
+            <option value="2">دوشنبه</option>
+            <option value="3">سه‌شنبه</option>
+            <option value="4">چهارشنبه</option>
+        </select>
+        <button class="ui button" name="submit" id="submit" type="submit">بساز</button>
+
+    </form>
+{% endblock %}
 </body>
 </html>

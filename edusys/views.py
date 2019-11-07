@@ -8,7 +8,6 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 
-
 # Create your views here.
 from edusys.forms import ContactUs
 
@@ -88,6 +87,7 @@ def profile(req):
 def panel(req):
     return render(req, "panel.html")
 
+
 @login_required(login_url='/login')
 def setting(req):
     if req.method == 'POST':
@@ -101,8 +101,11 @@ def setting(req):
             req.user.last_name = last_name
             req.user.save()
         return redirect('/profile')
-    return render(req,"setting.html")
+    return render(req, "setting.html")
 
 
 def create_new_course(req):
-    return render(req,"create_new_course.html")
+    if req.method == 'POST':
+        data = req.POST
+        print(data.get('first_day'))
+    return render(req, "create_new_course.html")
