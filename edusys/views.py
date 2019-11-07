@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 
+
 # Create your views here.
 from edusys.forms import ContactUs
 
@@ -83,3 +84,8 @@ def contact_us(req):
 @login_required(login_url='/login')
 def profile(req):
     return render(req, "profile.html", context={'user': req.user})
+
+
+@login_required(login_url='/login')
+def panel(req):
+    return render(req,"panel.html")
