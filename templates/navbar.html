@@ -12,7 +12,6 @@
     <a id="homepage" class="ui item" href="/">
         <i class="ui home large icon"></i>
     </a>
-    {#    <div class="ui right menu" id="navbar">#}
     {% if not request.user.is_authenticated %}
         <a class="ui item" id="login" href="/login">log in</a>
         <a class="ui item" id="register" href="/signup">sign up</a>
