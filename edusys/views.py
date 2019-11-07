@@ -63,18 +63,18 @@ def contact_us(req):
     if req.method == 'POST':
         form = ContactUs(req.POST)
         if form.is_valid():
-            # clean = form.cleaned_data
-            # recipient_list = ['webe19lopers@gmail.com']
-            # title = clean.get('title')
-            # text = clean.get('text') + '\n' + clean.get('email')
-            #
-            # send_mail(
-            #     title,
-            #     text,
-            #     '',
-            #     ['webe19lopers@gmail.com'],
-            #     fail_silently=False,
-            # )
+            clean = form.cleaned_data
+            recipient_list = ['webe19lopers@gmail.com']
+            title = clean.get('title')
+            text = clean.get('text') + '\n' + clean.get('email')
+
+            send_mail(
+                title,
+                text,
+                '',
+                ['webe19lopers@gmail.com'],
+                fail_silently=False,
+            )
             return render(req, 'blank.html')
     form = ContactUs()
     return render(req, 'contact_us.html', {'done': False, 'form': form})
