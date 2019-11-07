@@ -1,9 +1,9 @@
 from django.urls import path
 
 from edusys import views
-from edusys.views import home
+from edusys.views import *
 
 urlpatterns = [
     path('', home),
-    path('register/',register),
+    path('register/',signup),
 ]
