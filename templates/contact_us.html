@@ -6,16 +6,12 @@
 </head>
 <body>
 {% extends 'navbar.html' %}
-<form id=”contact_us_form”>
-    <input class="ui input" name=”title”>
-    <input class="ui input" name=”email”>
-    <textarea name=“text”>
-    </textarea>
-    {% if submit %}
-        <div id='done'>
-            درخواست شما ثبت شد
-        </div>
-    {% endif %}
-</form>
+{% block body %}
+    <form id="contact_us_form" method="post" action="/contact_us/">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">submit</button>
+    </form>
+{% endblock %}
 </body>
 </html>

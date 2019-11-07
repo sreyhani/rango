@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from django.http import HttpResponse, request
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
@@ -9,6 +10,9 @@ from django.shortcuts import render, redirect
 
 
 # Create your views here.
+from edusys.forms import ContactUs
+
+
 def home(req):
     return render(req, "homepage.html")
 
@@ -57,12 +61,29 @@ def signup(req: HttpRequest):
 
 
 def contact_us(req):
-    return
+    if req.method == 'POST':
+        form = ContactUs(req.POST)
+        if form.is_valid():
+            clean = form.cleaned_data
+            recipient_list = ['webe19lopers@gmail.com']
+            title = clean.get('title')
+            text = clean.get('text') + '\n' + clean.get('email')
+
+            send_mail(
+                title,
+                text,
+                '',
+                ['webe19lopers@gmail.com'],
+                fail_silently=False,
+            )
+            return render(req, 'blank.html')
+    form = ContactUs()
+    return render(req, 'contact_us.html', {'done': False, 'form': form})
 
 
 @login_required(login_url='/login')
 def profile(req):
-    return render(req, "profile.html", context={'user':req.user})
+    return render(req, "profile.html", context={'user': req.user})
 
 
 @login_required(login_url='/login')
