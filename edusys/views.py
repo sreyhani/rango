@@ -63,3 +63,8 @@ def contact_us(req):
 @login_required(login_url='/login')
 def profile(req):
     return render(req, "profile.html", context={'user':req.user})
+
+
+@login_required(login_url='/login')
+def panel(req):
+    return render(req,"panel.html")
