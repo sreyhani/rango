@@ -8,7 +8,7 @@
 {% extends "navbar.html" %}
 {% block body %}
     <div class="ui large middle center aligned grid">
-                <form class="ui form" id=”register_form” method="POST">
+                <form class="ui form" id='register_form' method="POST" action="{% url 'signup' %}">
                     {% csrf_token %}
                     <input class="ui" name='first_name'  placeholder="enter your first name">
                     <input class="ui" name='last_name'  placeholder="enter your last name">
