@@ -71,8 +71,8 @@ def contact_us(req):
             send_mail(
                 title,
                 text,
-                'sajjad7997@gmail.com',
-                ['webe19lopers@gmail.com'],
+                '',
+                [''],
                 fail_silently=False,
             )
             return render(req, 'blank.html')
