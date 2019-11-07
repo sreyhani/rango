@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, logout, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse, request
 from django.shortcuts import render, redirect
@@ -33,7 +34,7 @@ def logout_view(req):
 
 
 def signup(req: HttpRequest):
-    user_exists='نام کاربری شما در سیستم موجود است'
+    user_exists = 'نام کاربری شما در سیستم موجود است'
     password_not_match = 'گذرواژه و تکرار گذرواژه یکسان نیستند'
     if req.method == "POST":
         data = req.POST
@@ -43,10 +44,11 @@ def signup(req: HttpRequest):
         pass1 = data.get('password1')
         pass2 = data.get('password2')
         if User.objects.filter(username=my_user_name).count() != 0:
-            return render(req,"signup.html",context={'error':user_exists})
+            return render(req, "signup.html", context={'error': user_exists})
         if pass1 != pass2:
-            return render(req,"signup.html",context={'error':password_not_match})
-        user = User(username=my_user_name, first_name=data.get('first_name'), last_name=data.get('last_name'), email=data.get('email'))
+            return render(req, "signup.html", context={'error': password_not_match})
+        user = User(username=my_user_name, first_name=data.get('first_name'), last_name=data.get('last_name'),
+                    email=data.get('email'))
         user.set_password(pass1)
         user.save()
         return redirect('/')
@@ -56,3 +58,8 @@ def signup(req: HttpRequest):
 
 def contact_us(req):
     return
+
+
+@login_required(login_url='/login')
+def profile(req):
+    return render(req, "profile.html", context={'user':req.user})

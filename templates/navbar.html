@@ -16,6 +16,7 @@
         <a class="ui item" id="login" href="/login">log in</a>
         <a class="ui item" id="register" href="/signup">sign up</a>
     {% else %}
+        <a class="ui item" id ="profile"  href="{% url 'profile' %}">profile</a>
         <a class="ui item" id="logout" href="{% url 'logout' %}">logout</a>
     {% endif %}
     <a class="ui item" id='contact_us' href="/contact_us">contact us</a>
