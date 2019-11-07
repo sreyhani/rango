@@ -66,7 +66,7 @@ def contact_us(req):
             clean = form.cleaned_data
             recipient_list = ['webe19lopers@gmail.com']
             title = clean.get('title')
-            text = clean.get('text') + '\n' + clean.get('email')
+            text = clean.get('email') + '\n' + clean.get('text')
 
             send_mail(
                 title,
