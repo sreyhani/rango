@@ -65,13 +65,13 @@ def contact_us(req):
             clean = form.cleaned_data
             recipient_list = ['webe19lopers@gmail.com']
             title = clean.get('title')
-            text = clean.get('email') + '\n' + clean.get('text')
+            text = clean.get('text') + '\n' + clean.get('email')
 
             send_mail(
                 title,
                 text,
                 '',
-                ['webe19lopers@gmail.com'],
+                [''],
                 fail_silently=False,
             )
             return render(req, 'blank.html')
@@ -86,7 +86,7 @@ def profile(req):
 
 @login_required(login_url='/login')
 def panel(req):
-    return render(req,"panel.html")
+    return render(req, "panel.html")
 
 @login_required(login_url='/login')
 def setting(req):
