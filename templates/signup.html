@@ -8,8 +8,8 @@
 {% extends "navbar.html" %}
 {% block body %}
     <div class="ui large middle center aligned grid">
-<<<<<<< HEAD
-        <form class="ui form" id=”register_form” method="POST">
+
+        <form class="ui form" id='register_form' method="POST" action="{% url 'signup' %}">
             {% csrf_token %}
             <input class="ui" name='first_name' placeholder="enter your first name">
             <input class="ui" name='last_name' placeholder="enter your last name">
@@ -17,20 +17,9 @@
             <input class="ui" name='email' placeholder="enter your email">
             <input class="ui" name='password1' placeholder="enter your password">
             <input class="ui" name='password2' placeholder="confirm your password">
-            <button class="ui button" name=”submit" type="submit">submit</button>
+            <button class="ui button" name="submit" id="submit" type="submit">submit</button>
         </form>
-=======
-                <form class="ui form" id='register_form' method="POST" action="{% url 'signup' %}">
-                    {% csrf_token %}
-                    <input class="ui" name='first_name'  placeholder="enter your first name">
-                    <input class="ui" name='last_name'  placeholder="enter your last name">
-                    <input class="ui" name='username'  placeholder="enter your user name">
-                    <input class="ui" name='email' placeholder="enter your email">
-                    <input class="ui" name='password1' placeholder="enter your password">
-                    <input class="ui" name='password2'  placeholder="confirm your password">
-                    <button class="ui button" name="submit" id = "submit" type="submit">submit</button>
-                </form>
->>>>>>> 87c7ad2d1f37ec770a2f3571302d78089beeb527
+
     </div>
 {% endblock %}
 </body>
