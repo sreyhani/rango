@@ -7,6 +7,7 @@
 <body>
 {% extends "navbar.html" %}
 {% block body %}
+    <a class="ui item" id="setting" href="{% url 'setting' %}">setting</a>
     <span id="text_first_name">{{ user.first_name }}</span>
     <span id="text_last_name">{{ user.last_name }}</span>
     <span id="text_user_name">{{ user.username }}</span>

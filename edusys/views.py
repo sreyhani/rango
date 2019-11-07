@@ -42,8 +42,6 @@ def signup(req: HttpRequest):
     password_not_match = 'گذرواژه و تکرار گذرواژه یکسان نیستند'
     if req.method == "POST":
         data = req.POST
-        print(data)
-        print(data.get('first_name'))
         my_user_name = data.get('username')
         pass1 = data.get('password1')
         pass2 = data.get('password2')
@@ -89,3 +87,18 @@ def profile(req):
 @login_required(login_url='/login')
 def panel(req):
     return render(req,"panel.html")
+
+@login_required(login_url='/login')
+def setting(req):
+    if req.method == 'POST':
+        data = req.POST
+        first_name = data.get('first_name')
+        last_name = data.get('last_name')
+        if first_name != '':
+            req.user.first_name = first_name
+            req.user.save()
+        if last_name != '':
+            req.user.last_name = last_name
+            req.user.save()
+        return redirect('/profile')
+    return render(req,"setting.html")

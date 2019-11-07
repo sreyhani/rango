@@ -11,5 +11,6 @@ urlpatterns = [
     path('signup/', signup, name='signup'),
     path('contact_us/', contact_us, name='contact_us'),
     path('profile/',profile,name = 'profile'),
-    path('panel/',panel,name = 'panel')
+    path('panel/',panel,name = 'panel'),
+    path('setting/',setting,name = 'setting'),
 ]
