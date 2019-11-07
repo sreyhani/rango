@@ -8,7 +8,6 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 
-
 # Create your views here.
 from edusys.forms import ContactUs
 
@@ -67,7 +66,7 @@ def contact_us(req):
             clean = form.cleaned_data
             recipient_list = ['webe19lopers@gmail.com']
             title = clean.get('title')
-            text = clean.get('email') + '\n' + clean.get('text')
+            text = clean.get('text') + '\n' + clean.get('email')
 
             send_mail(
                 title,
@@ -88,4 +87,4 @@ def profile(req):
 
 @login_required(login_url='/login')
 def panel(req):
-    return render(req,"panel.html")
+    return render(req, "panel.html")
