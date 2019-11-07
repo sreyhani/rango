@@ -14,14 +14,14 @@ def signup(req: HttpRequest):
         data = req.POST
         print(data)
         print(data.get('first_name'))
-        user_name = data.get('username')
+        my_user_name = data.get('username')
         pass1 = data.get('password1')
         pass2 = data.get('password2')
-        # if User.objects.filter().count() != 0:
-        #     return render(req,"signup.html",context={'error':user_exists})
-        # if pass1 != pass2:
-        #     return render(req,"signup.html",context={'error':password_not_match})
-        user = User(username=user_name, first_name=data.get('first_name'), last_name=data.get('last_name'), email=data.get('email'))
+        if User.objects.filter(username=my_user_name).count() != 0:
+            return render(req,"signup.html",context={'error':user_exists})
+        if pass1 != pass2:
+            return render(req,"signup.html",context={'error':password_not_match})
+        user = User(username=my_user_name, first_name=data.get('first_name'), last_name=data.get('last_name'), email=data.get('email'))
         user.set_password(pass1)
         user.save()
         return redirect('/')
