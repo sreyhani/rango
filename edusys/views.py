@@ -122,7 +122,7 @@ def courses(req):
             # department = form.cleaned_data.get("department")
             # teacher = form.cleaned_data.get("teacher")
             searched = form.cleaned_data.get("search_query")
-            courses = Course.objects.filter(name=searched)
+            courses = Course.objects.filter(department=searched)
             # if department:
             #     courses = Course.objects.filter(department=searched)
             # elif teacher:
