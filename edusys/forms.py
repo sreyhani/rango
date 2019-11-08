@@ -22,16 +22,22 @@ class ContactUs(forms.Form):
 
 
 class CourseForm(forms.ModelForm):
-    exam_date = forms.DateField(input_formats='%Y-%m-%d')
+    # exam_date = forms.DateField(input_formats='%Y-%m-%d')
+
     class Meta:
         model = Course
         fields = "__all__"
         exclude = ['user']
 
 
-class ImageUploadForm(forms.Form):
-    image = forms.ImageField()
+
+#
+# class ImageUploadForm(forms.Form):
+#     image = forms.ImageField()
 
 
 class SearchCourse(forms.Form):
     search_query = forms.CharField(max_length=50, required=True, label="search_query")
+    # department = forms.BooleanField(required=False)
+    # teacher = forms.BooleanField(required=False)
+    # course = forms.BooleanField(required=False)

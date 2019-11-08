@@ -11,7 +11,7 @@ class Course(models.Model):
     group_number = models.IntegerField()
     teacher = models.CharField(max_length=30)
     start_time = models.TimeField()
-    exam_date = models.DateField(default="2000-1-1")
+    # exam_date = models.DateField(default="2000-1-1")
     end_time = models.TimeField()
     DAYS_OF_WEEK = [
         (0, 'شنبه'),
@@ -22,6 +22,11 @@ class Course(models.Model):
     ]
     first_day = models.IntegerField(choices=DAYS_OF_WEEK)
     second_day = models.IntegerField(choices=DAYS_OF_WEEK, null=True, blank=True)
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    avatar = models.ImageField(upload_to='static/avatar', null=True)
 
 # class UserProfile(models.Model):
 #     user = models.OneToOneField(User)

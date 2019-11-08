@@ -86,7 +86,7 @@ def profile(req):
 
 @login_required(login_url='/login')
 def panel(req):
-    return render(req, "panel.html",context={'user':req.user})
+    return render(req, "panel.html", context={'user': req.user})
 
 
 @login_required(login_url='/login')
@@ -105,7 +105,7 @@ def setting(req):
     return render(req, "setting.html")
 
 
-@user_passes_test(lambda u: u.is_superuser,login_url='/panel' )
+@user_passes_test(lambda u: u.is_superuser, login_url='/panel')
 def create_new_course(req):
     if req.POST:
         form = CourseForm(req.POST)
@@ -114,26 +114,33 @@ def create_new_course(req):
             return redirect('/courses')
     return render(req, "create_new_course.html", {"form": CourseForm})
 
-def courses(req):
-    if req.POST:
-        form = SearchCourse(req.POST)
-        if form.is_valid():
-            # form.save()
-            searched = form.cleaned_data.get("search_query")
-            courses = Course.objects.filter(name=searched)
-            print("salam")
-            return render(req, "courses.html", {'courses': Course.objects.all(), 'searched': courses, 'form': courses})
-    courses = SearchCourse()
 
+def courses(req):
     my_courses = req.user.course_set.all()
     all_courses = Course.objects.all()
     for course in my_courses:
         all_courses = all_courses.exclude(id=course.id)
-    return render(req, "courses.html", {'courses': all_courses, 'form': courses,'my_courses':my_courses})
+    if req.POST:
+        form = SearchCourse(req.POST)
+        if form.is_valid():
+            # department = form.cleaned_data.get("department")
+            # teacher = form.cleaned_data.get("teacher")
+            searched = form.cleaned_data.get("search_query")
+            searched_courses = Course.objects.filter(department=searched)
+            # if department:
+            #     courses = Course.objects.filter(department=searched)
+            # elif teacher:
+            #     courses = Course.objects.filter(teacher=searched)
+            return render(req, "courses.html", {'courses': all_courses, 'form': form, 'my_courses': my_courses, 'searched': searched_courses})
+    form = SearchCourse()
+
+    return render(req, "courses.html", {'courses': all_courses, 'form': form, 'my_courses': my_courses,})
 
 
 
-def get_course(req,course_id):
+
+
+def get_course(req, course_id):
     course = Course.objects.filter(id=course_id).all()[0]
     course.user.add(req.user)
     course.save()

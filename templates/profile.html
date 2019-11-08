@@ -6,11 +6,14 @@
 </head>
 <body>
 {% extends "navbar.html" %}
+{% load staticfiles %}
+
 {% block body %}
     <a class="ui item" id="setting" href="{% url 'setting' %}">setting</a>
     <span id="text_first_name">{{ user.first_name }}</span>
     <span id="text_last_name">{{ user.last_name }}</span>
     <span id="text_user_name">{{ user.username }}</span>
+    <img id="profile_image" src="{{ user.profile.avatar }}" alt="image not found">
 
 {% endblock %}
 </body>
