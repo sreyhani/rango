@@ -18,4 +18,4 @@ class Course(models.Model):
         (4, 'چهارشنبه'),
     ]
     first_day = models.IntegerField(choices=DAYS_OF_WEEK)
-    end_day = models.IntegerField(choices=DAYS_OF_WEEK)
+    end_day = models.IntegerField(choices=DAYS_OF_WEEK, null=True, blank=True)

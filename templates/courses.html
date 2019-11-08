@@ -7,8 +7,9 @@
 <body>
 {% extends 'navbar.html' %}
 {% block body %}
-    {% for course in courses %}
-        <div id="all_courses">
+    <div id="all_courses">
+
+        {% for course in courses %}
             <div class="{{ course.course_number }}_{{ course.group_number }}">
                 <h4> اسم{{ course.name }}</h4>
                 <div> دانشکده{{ course.department }}</div>
@@ -19,9 +20,9 @@
                     {{ course.end_time.hour|stringformat:"02d" }}:{{ course.end_time.minute|stringformat:"02d" }}</div>
                 <div> دبیر{{ course.teacher }}</div>
             </div>
-        </div>
 
-    {% endfor %}
+        {% endfor %}
+    </div>
 {% endblock %}
 
 </body>
