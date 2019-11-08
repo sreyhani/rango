@@ -26,12 +26,14 @@
     <form id="search_form" action="/courses/" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        {% for course in searched %}
-            <div class="{{ course.course_number }}_{{ course.group_number }}">
-                <h4> اسم{{ course.name }}</h4>
-                <div> دبیر{{ course.teacher }}</div>
-            </div>
-        {% endfor %}
+        <div id="search_result">
+            {% for course in searched %}
+                <div class="{{ course.course_number }}_{{ course.group_number }}">
+                    <h4> اسم{{ course.name }}</h4>
+                    <div> دبیر{{ course.teacher }}</div>
+                </div>
+            {% endfor %}
+        </div>
         <button name="submit" type="submit">submit</button>
 
     </form>
