@@ -42,6 +42,11 @@
                         {{ course.end_time.hour|stringformat:"02d" }}:{{ course.end_time.minute|stringformat:"02d" }}</div>
                     <div>دبیر:{{ course.teacher }}</div>
                     <a class="remove" href="{% url 'remove_course' course_id=course.id %}">remove course</a>
+                    {% for n_course in my_courses %}
+                        {% if course != n_course and  course.exam_date == n_course.exam_date %}
+                            <span class="error">زمان درس با سایر دروس تداخل دارد</span>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
             <br>
@@ -67,16 +72,16 @@
                 <div> دبیر{{ course.teacher }}</div>
             </div>
         {% endfor %}{% for course in name_searched %}
-            <div class="{{ course.course_number }}_{{ course.group_number }}">
-                <div> اسم{{ course.name }}</div>
-                <div> دبیر{{ course.teacher }}</div>
-            </div>
-        {% endfor %}{% for course in dep_searched %}
-            <div class="{{ course.course_number }}_{{ course.group_number }}">
-                <div> اسم{{ course.name }}</div>
-                <div> دبیر{{ course.teacher }}</div>
-            </div>
-        {% endfor %}
+        <div class="{{ course.course_number }}_{{ course.group_number }}">
+            <div> اسم{{ course.name }}</div>
+            <div> دبیر{{ course.teacher }}</div>
+        </div>
+    {% endfor %}{% for course in dep_searched %}
+        <div class="{{ course.course_number }}_{{ course.group_number }}">
+            <div> اسم{{ course.name }}</div>
+            <div> دبیر{{ course.teacher }}</div>
+        </div>
+    {% endfor %}
     </div>
 
 {% endblock %}
