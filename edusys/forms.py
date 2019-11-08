@@ -30,3 +30,7 @@ class CourseForm(forms.ModelForm):
 #
 # class ImageUploadForm(forms.Form):
 #     image = forms.ImageField()
+
+
+class SearchCourse(forms.Form):
+    search_query = forms.CharField(max_length=50, required=True, label="search_query")
