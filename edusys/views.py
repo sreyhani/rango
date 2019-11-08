@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, logout, login
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.http import HttpResponse, request
@@ -86,7 +86,7 @@ def profile(req):
 
 @login_required(login_url='/login')
 def panel(req):
-    return render(req, "panel.html")
+    return render(req, "panel.html",context={'user':req.user})
 
 
 @login_required(login_url='/login')
@@ -105,6 +105,7 @@ def setting(req):
     return render(req, "setting.html")
 
 
+@user_passes_test(lambda u: u.is_superuser,login_url='/panel' )
 def create_new_course(req):
     if req.POST:
         form = CourseForm(req.POST)
@@ -112,7 +113,6 @@ def create_new_course(req):
             form.save()
             return redirect('/courses')
     return render(req, "create_new_course.html", {"form": CourseForm})
-
 
 def courses(req):
     if req.POST:
