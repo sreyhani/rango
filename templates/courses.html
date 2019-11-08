@@ -61,6 +61,22 @@
                 <div> دبیر{{ course.teacher }}</div>
             </div>
         {% endfor %}
+        {% for course in teacher_searched %}
+            <div class="{{ course.course_number }}_{{ course.group_number }}">
+                <div> اسم{{ course.name }}</div>
+                <div> دبیر{{ course.teacher }}</div>
+            </div>
+        {% endfor %}{% for course in name_searched %}
+            <div class="{{ course.course_number }}_{{ course.group_number }}">
+                <div> اسم{{ course.name }}</div>
+                <div> دبیر{{ course.teacher }}</div>
+            </div>
+        {% endfor %}{% for course in dep_searched %}
+            <div class="{{ course.course_number }}_{{ course.group_number }}">
+                <div> اسم{{ course.name }}</div>
+                <div> دبیر{{ course.teacher }}</div>
+            </div>
+        {% endfor %}
     </div>
 
 {% endblock %}
