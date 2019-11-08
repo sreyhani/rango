@@ -22,9 +22,14 @@ class ContactUs(forms.Form):
 
 
 class CourseForm(forms.ModelForm):
+    exam_date = forms.DateField(input_formats='%Y-%m-%d')
     class Meta:
         model = Course
         fields = "__all__"
+
+#
+# class ImageUploadForm(forms.Form):
+#     image = forms.ImageField()
 
 
 class SearchCourse(forms.Form):
