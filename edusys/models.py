@@ -11,7 +11,7 @@ class Course(models.Model):
     group_number = models.IntegerField()
     teacher = models.CharField(max_length=30)
     start_time = models.TimeField()
-    # exam_date = models.DateField(default="2000-1-1")
+    exam_date = models.DateField(default="2000-1-1")
     end_time = models.TimeField()
     DAYS_OF_WEEK = [
         (0, 'شنبه'),
