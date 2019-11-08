@@ -21,6 +21,8 @@
                         {{ course.end_time.hour|stringformat:"02d" }}:{{ course.end_time.minute|stringformat:"02d" }}</div>
                     <div>دبیر:{{ course.teacher }}</div>
                     <a class="add" href="{% url 'get_course' course_id=course.id %}">get course</a>
+                    <a class="details" href="{% url 'course_page' course_id=course.id %}">course page</a>
+
                 </div>
             </div>
             <br>
@@ -41,7 +43,9 @@
                         و
                         {{ course.end_time.hour|stringformat:"02d" }}:{{ course.end_time.minute|stringformat:"02d" }}</div>
                     <div>دبیر:{{ course.teacher }}</div>
-                    <a class="remove" href="{% url 'remove_course' course_id=course.id %}">remove course</a>
+                    <a class="remove" href="{% url 'remove_course' course_id=course.id %}">remove course</a><br>
+                    <a class="details" href="{% url 'course_page' course_id=course.id %}">course page</a>
+
                 </div>
             </div>
             <br>
@@ -67,16 +71,16 @@
                 <div> دبیر{{ course.teacher }}</div>
             </div>
         {% endfor %}{% for course in name_searched %}
-            <div class="{{ course.course_number }}_{{ course.group_number }}">
-                <div> اسم{{ course.name }}</div>
-                <div> دبیر{{ course.teacher }}</div>
-            </div>
-        {% endfor %}{% for course in dep_searched %}
-            <div class="{{ course.course_number }}_{{ course.group_number }}">
-                <div> اسم{{ course.name }}</div>
-                <div> دبیر{{ course.teacher }}</div>
-            </div>
-        {% endfor %}
+        <div class="{{ course.course_number }}_{{ course.group_number }}">
+            <div> اسم{{ course.name }}</div>
+            <div> دبیر{{ course.teacher }}</div>
+        </div>
+    {% endfor %}{% for course in dep_searched %}
+        <div class="{{ course.course_number }}_{{ course.group_number }}">
+            <div> اسم{{ course.name }}</div>
+            <div> دبیر{{ course.teacher }}</div>
+        </div>
+    {% endfor %}
     </div>
 
 {% endblock %}

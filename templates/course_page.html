@@ -1,10 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title>pagebar</title>
+    <title>login</title>
 </head>
 <body>
 {% extends "navbar.html" %}
 {% block body %}
-
+    <p>{{ course.department }}</p>
+    <p>{{ course.name }}</p>
+    <p>{{ course.group_number }}</p>
+    <p>{{ course.course_number }}</p>
+    <p>{{ course.teacher }}</p>
+    <p>{{ course.start_time.hour|stringformat:"02d" }}:{{ course.start_time.minute|stringformat:"02d" }}</p>
+    <p>{{ course.end_time.hour|stringformat:"02d" }}:{{ course.end_time.minute|stringformat:"02d" }}</p>
+    <p>{{ course.get_first_day_display }}</p>
+    <p>{{ course.get_second_day_display }}</p>
 
 {% endblock body %}
 </body>

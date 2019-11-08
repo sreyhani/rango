@@ -166,3 +166,8 @@ def remove_course(req, course_id):
     course.user.remove(req.user)
     course.save()
     return redirect('/courses')
+
+
+def course_page(req,course_id):
+    course = Course.objects.filter(id=course_id).all()[0]
+    return render(req,"course_page.html",{'course':course})
