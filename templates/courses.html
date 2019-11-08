@@ -30,11 +30,10 @@
         <button name="submit" type="submit">submit</button>
     </form>
     <div id="search_result">
-
         {% for course in searched %}
             <div class="{{ course.course_number }}_{{ course.group_number }}">
+                <div> اسم{{ course.name }}</div>
                 <div> دبیر{{ course.teacher }}</div>
-                <h4> اسم{{ course.name }}</h4>
             </div>
         {% endfor %}
     </div>
