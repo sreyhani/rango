@@ -7,9 +7,9 @@
 <body>
 {% extends "navbar.html" %}
 {% block body %}
-    {% if user.is_superuser %}
+{#    {% if user.is_superuser %}#}
     <a class="ui" id="make_new_course" href="{% url 'create_new_course' %}">make new course</a>
-    {% endif %}
+{#    {% endif %}#}
     <a class="ui" id='courses' href="/courses">courses</a>
 
 {% endblock %}

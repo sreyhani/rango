@@ -105,7 +105,7 @@ def setting(req):
     return render(req, "setting.html")
 
 
-@user_passes_test(lambda u: u.is_superuser,login_url='/panel' )
+# @user_passes_test(lambda u: u.is_superuser,login_url='/panel' )
 def create_new_course(req):
     if req.POST:
         form = CourseForm(req.POST)
