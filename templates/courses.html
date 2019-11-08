@@ -18,7 +18,8 @@
                 <div> ـ
                     ساعت{{ course.start_time.hour|stringformat:"02d" }}:{{ course.start_time.minute|stringformat:"02d" }}
                     و
-                    {{ course.second_day.hour|stringformat:"02d" }}:{{ course.second_day.minute|stringformat:"02d" }}</div>
+                    {{ course.second_day.hour|stringformat:"02d" }}:{{ course.second_day.minute|stringformat:"02d" }}
+                </div>
                 <div> دبیر{{ course.teacher }}</div>
             </div>
         {% endfor %}

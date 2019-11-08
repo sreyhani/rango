@@ -95,6 +95,11 @@ def setting(req):
         data = req.POST
         first_name = data.get('first_name')
         last_name = data.get('last_name')
+        image = '/static/avatar/' + data.get('image')
+        if image:
+            req.user.avatar = image
+            req.user.save()
+            print(image)
         if first_name != '':
             req.user.first_name = first_name
             req.user.save()
