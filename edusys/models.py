@@ -4,6 +4,7 @@ from django.db import models
 
 # Create your models here.
 class Course(models.Model):
+    user = models.ManyToManyField(User)
     department = models.CharField(max_length=30)
     name = models.CharField(max_length=30)
     course_number = models.IntegerField()
@@ -21,8 +22,6 @@ class Course(models.Model):
     ]
     first_day = models.IntegerField(choices=DAYS_OF_WEEK)
     second_day = models.IntegerField(choices=DAYS_OF_WEEK, null=True, blank=True)
-
-
 
 # class UserProfile(models.Model):
 #     user = models.OneToOneField(User)

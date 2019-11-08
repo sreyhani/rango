@@ -124,4 +124,17 @@ def courses(req):
             print("salam")
             return render(req, "courses.html", {'courses': Course.objects.all(), 'searched': courses, 'form': courses})
     courses = SearchCourse()
-    return render(req, "courses.html", {'courses': Course.objects.all(), 'form': courses})
+
+    my_courses = req.user.course_set.all()
+    all_courses = Course.objects.all()
+    for course in my_courses:
+        all_courses = all_courses.exclude(id=course.id)
+    return render(req, "courses.html", {'courses': all_courses, 'form': courses,'my_courses':my_courses})
+
+
+
+def get_course(req,course_id):
+    course = Course.objects.filter(id=course_id).all()[0]
+    course.user.add(req.user)
+    course.save()
+    return redirect('/courses')

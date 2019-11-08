@@ -26,10 +26,11 @@ class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
         fields = "__all__"
+        exclude = ['user']
 
-#
-# class ImageUploadForm(forms.Form):
-#     image = forms.ImageField()
+
+class ImageUploadForm(forms.Form):
+    image = forms.ImageField()
 
 
 class SearchCourse(forms.Form):
