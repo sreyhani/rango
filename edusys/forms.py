@@ -36,6 +36,6 @@ class CourseForm(forms.ModelForm):
 
 class SearchCourse(forms.Form):
     search_query = forms.CharField(max_length=50, required=True, label="search_query")
-    department = forms.BooleanField(required=False)
-    teacher = forms.BooleanField(required=False)
-    course = forms.BooleanField(required=False)
+    # department = forms.BooleanField(required=False)
+    # teacher = forms.BooleanField(required=False)
+    # course = forms.BooleanField(required=False)
