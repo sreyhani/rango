@@ -14,11 +14,11 @@
                 <div class="ui message">
                     <h4> name:{{ course.name }}</h4>
                     <div> دانشکده:{{ course.department }}</div>
-                    <div> روز:{{ course.get_first_day_display }} و {{ course.get_end_day_display }}</div>
+                    <div> روز:{{ course.get_first_day_display }} و {{ course.get_second_day_display }}</div>
                     <div> ـ
                         ساعت:{{ course.start_time.hour|stringformat:"02d" }}:{{ course.start_time.minute|stringformat:"02d" }}
                         و
-                        {{ course.second_day.hour|stringformat:"02d" }}:{{ course.second_day.minute|stringformat:"02d" }}</div>
+                        {{ course.end_time.hour|stringformat:"02d" }}:{{ course.end_time.minute|stringformat:"02d" }}</div>
                     <div>دبیر:{{ course.teacher }}</div>
                     <a class="add" href="{% url 'get_course' course_id=course.id %}">get course</a>
                 </div>
