@@ -19,7 +19,6 @@ class ContactUs(forms.Form):
     title = forms.CharField(max_length=30, required=True, label='title')
     email = forms.EmailField(max_length=30, required=True, label='email')
     text = forms.CharField(min_length=10, max_length=250, required=True, widget=forms.Textarea, label='text')
-    # class Meta:
 
 
 class CourseForm(forms.ModelForm):
