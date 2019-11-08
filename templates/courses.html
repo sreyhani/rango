@@ -17,9 +17,20 @@
                 <div> ـ ساعت{{ course.start_time.isoformat }} و {{ course.end_time.isoformat }}</div>
                 <div> دبیر{{ course.teacher }}</div>
             </div>
-
         {% endfor %}
+
     </div>
+    <form id="search_form" action="/courses/" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% for course in searched %}
+            <div class="{{ course.course_number }}_{{ course.group_number }}">
+                <h4> اسم{{ course.name }}</h4>
+                <div> دبیر{{ course.teacher }}</div>
+            </div>
+        {% endfor %}
+        <button name="submit" type="submit">submit</button>
+    </form>
 {% endblock %}
 
 </body>

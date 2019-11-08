@@ -25,3 +25,7 @@ class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
         fields = "__all__"
+
+
+class SearchCourse(forms.Form):
+    search_query = forms.CharField(max_length=50, required=True, label="search_query")

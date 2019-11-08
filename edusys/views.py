@@ -9,7 +9,7 @@ from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from edusys.forms import ContactUs, CourseForm
+from edusys.forms import ContactUs, CourseForm, SearchCourse
 from edusys.models import Course
 
 
@@ -109,11 +109,19 @@ def create_new_course(req):
     if req.POST:
         form = CourseForm(req.POST)
         if form.is_valid():
-            print(form)
             form.save()
             return redirect('/courses')
     return render(req, "create_new_course.html", {"form": CourseForm})
 
 
 def courses(req):
-    return render(req, "courses.html", {'courses': Course.objects.all()})
+    if req.POST:
+        form = SearchCourse(req.POST)
+        if form.is_valid():
+            # form.save()
+            searched = form.cleaned_data.get("search_query")
+            courses = Course.objects.filter(name=searched)
+            print("salam")
+            return render(req, "courses.html", {'courses': Course.objects.all(), 'searched': courses, 'form': courses})
+    courses = SearchCourse()
+    return render(req, "courses.html", {'courses': Course.objects.all(), 'form': courses})
