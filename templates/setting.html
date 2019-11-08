@@ -7,7 +7,7 @@
 <body>
 {% extends "navbar.html" %}
 {% block body %}
-    <form class="ui form" method="post" id="setting_form" action="{% url 'setting' %}">
+    <form class="ui form" method="post" id="setting_form" action="{% url 'setting' %}" enctype="multipart/form-data">
         {% csrf_token %}
         <input class="ui" name='first_name' placeholder="enter new first name">
         <input class="ui" name='last_name' placeholder="edit new last name">

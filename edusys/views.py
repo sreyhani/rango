@@ -10,7 +10,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from edusys.forms import ContactUs, CourseForm, SearchCourse
-from edusys.models import Course
+from edusys.models import Course, UserProfile
 
 
 def home(req):
@@ -52,6 +52,9 @@ def signup(req: HttpRequest):
         user = User(username=my_user_name, first_name=data.get('first_name'), last_name=data.get('last_name'),
                     email=data.get('email'))
         user.set_password(pass1)
+        user.save()
+        profile = UserProfile()
+        user.userprofile = profile
         user.save()
         return redirect('/')
     else:
@@ -95,11 +98,10 @@ def setting(req):
         data = req.POST
         first_name = data.get('first_name')
         last_name = data.get('last_name')
-        image = '/static/avatar/' + data.get('image')
+        image = req.FILES.get('image')
         if image:
-            req.user.avatar = image
-            req.user.save()
-            print(image)
+            req.user.userprofile.avatar = image
+            req.user.userprofile.save()
         if first_name != '':
             req.user.first_name = first_name
             req.user.save()
