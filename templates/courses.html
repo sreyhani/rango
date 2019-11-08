@@ -46,6 +46,11 @@
                     <a class="remove" href="{% url 'remove_course' course_id=course.id %}">remove course</a><br>
                     <a class="details" href="{% url 'course_page' course_id=course.id %}">course page</a>
 
+                    {% for n_course in my_courses %}
+                        {% if course != n_course and  course.exam_date == n_course.exam_date %}
+                            <span class="error">زمان درس با سایر دروس تداخل دارد</span>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
             <br>
