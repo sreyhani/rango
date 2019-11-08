@@ -41,7 +41,7 @@
                         و
                         {{ course.second_day.hour|stringformat:"02d" }}:{{ course.second_day.minute|stringformat:"02d" }}</div>
                     <div>دبیر:{{ course.teacher }}</div>
-{#                    <a class="remove" href="{% url 'get_course' course_id=course.id %}">get course</a>#}
+                    <a class="remove" href="{% url 'remove_course' course_id=course.id %}">remove course</a>
                 </div>
             </div>
             <br>
@@ -49,19 +49,19 @@
         {% endfor %}
 
     </div>
-{#    <form id="search_form" action="/courses/" method="post">#}
-{#        {% csrf_token %}#}
-{#        {{ form.as_p }}#}
-{#        <button name="submit" type="submit">submit</button>#}
-{#    </form>#}
-{#    <div id="search_result">#}
-{#        {% for course in searched %}#}
-{#            <div class="{{ course.course_number }}_{{ course.group_number }}">#}
-{#                <div> اسم{{ course.name }}</div>#}
-{#                <div> دبیر{{ course.teacher }}</div>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#    </div>#}
+    <form id="search_form" action="/courses/" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit" type="submit">submit</button>
+    </form>
+    <div id="search_result">
+        {% for course in searched %}
+            <div class="{{ course.course_number }}_{{ course.group_number }}">
+                <div> اسم{{ course.name }}</div>
+                <div> دبیر{{ course.teacher }}</div>
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}
 </body>

@@ -131,17 +131,22 @@ def courses(req):
             #     courses = Course.objects.filter(department=searched)
             # elif teacher:
             #     courses = Course.objects.filter(teacher=searched)
-            return render(req, "courses.html", {'courses': all_courses, 'form': form, 'my_courses': my_courses, 'searched': searched_courses})
+            return render(req, "courses.html", {'courses': all_courses, 'form': form, 'my_courses': my_courses,
+                                                'searched': searched_courses})
     form = SearchCourse()
 
-    return render(req, "courses.html", {'courses': all_courses, 'form': form, 'my_courses': my_courses,})
-
-
-
+    return render(req, "courses.html", {'courses': all_courses, 'form': form, 'my_courses': my_courses, })
 
 
 def get_course(req, course_id):
     course = Course.objects.filter(id=course_id).all()[0]
     course.user.add(req.user)
+    course.save()
+    return redirect('/courses')
+
+
+def remove_course(req, course_id):
+    course = Course.objects.filter(id=course_id).all()[0]
+    course.user.remove(req.user)
     course.save()
     return redirect('/courses')
