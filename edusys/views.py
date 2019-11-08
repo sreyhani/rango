@@ -130,12 +130,12 @@ def courses(req):
     if req.POST:
         form = SearchCourse(req.POST)
         if form.is_valid():
-            department = form.cleaned_data.get("department")
+            name = form.cleaned_data.get("name")
             teacher = form.cleaned_data.get("teacher")
             searched = form.cleaned_data.get("search_query")
-            searched_courses = Course.objects.filter(name=searched)
-            if department:
-                searched_courses = Course.objects.filter(department=searched)
+            searched_courses = Course.objects.filter(department=searched)
+            if name:
+                searched_courses = Course.objects.filter(name=searched)
             elif teacher:
                 searched_courses = Course.objects.filter(teacher=searched)
             return render(req, "courses.html", {'courses': all_courses, 'form': form, 'my_courses': my_courses,
