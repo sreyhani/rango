@@ -116,17 +116,17 @@ def create_new_course(req):
 
 
 def courses(req):
-    if req.POST:
-        form = SearchCourse(req.POST)
-        if form.is_valid():
-            # department = form.cleaned_data.get("department")
-            # teacher = form.cleaned_data.get("teacher")
-            searched = form.cleaned_data.get("search_query")
-            courses = Course.objects.filter(department=searched)
-            # if department:
-            #     courses = Course.objects.filter(department=searched)
-            # elif teacher:
-            #     courses = Course.objects.filter(teacher=searched)
-            return render(req, "courses.html", {'courses': Course.objects.all(), 'searched': courses, 'form': form})
+    # if req.POST:
+    #     form = SearchCourse(req.POST)
+    #     if form.is_valid():
+    #         # department = form.cleaned_data.get("department")
+    #         # teacher = form.cleaned_data.get("teacher")
+    #         searched = form.cleaned_data.get("search_query")
+    #         courses = Course.objects.filter(department=searched)
+    #         # if department:
+    #         #     courses = Course.objects.filter(department=searched)
+    #         # elif teacher:
+    #         #     courses = Course.objects.filter(teacher=searched)
+    #         return render(req, "courses.html", {'courses': Course.objects.all(), 'searched': courses, 'form': form})
     form = SearchCourse()
     return render(req, "courses.html", {'courses': Course.objects.all(), 'form': form})
