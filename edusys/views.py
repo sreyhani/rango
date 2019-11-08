@@ -117,3 +117,5 @@ def create_new_course(req):
 
 def courses(req):
     return render(req, "courses.html", {'courses': Course.objects.all()})
+
+
