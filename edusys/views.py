@@ -121,17 +121,37 @@ def create_new_course(req):
 
 
 def courses(req):
+    my_courses = req.user.course_set.all()
+    all_courses = Course.objects.all()
+    for course in my_courses:
+        all_courses = all_courses.exclude(id=course.id)
     if req.POST:
         form = SearchCourse(req.POST)
         if form.is_valid():
             # department = form.cleaned_data.get("department")
             # teacher = form.cleaned_data.get("teacher")
             searched = form.cleaned_data.get("search_query")
-            courses = Course.objects.filter(department=searched)
+            searched_courses = Course.objects.filter(department=searched)
             # if department:
             #     courses = Course.objects.filter(department=searched)
             # elif teacher:
             #     courses = Course.objects.filter(teacher=searched)
-            return render(req, "courses.html", {'courses': Course.objects.all(), 'searched': courses, 'form': form})
+            return render(req, "courses.html", {'courses': all_courses, 'form': form, 'my_courses': my_courses,
+                                                'searched': searched_courses})
     form = SearchCourse()
-    return render(req, "courses.html", {'courses': Course.objects.all(), 'form': form})
+
+    return render(req, "courses.html", {'courses': all_courses, 'form': form, 'my_courses': my_courses, })
+
+
+def get_course(req, course_id):
+    course = Course.objects.filter(id=course_id).all()[0]
+    course.user.add(req.user)
+    course.save()
+    return redirect('/courses')
+
+
+def remove_course(req, course_id):
+    course = Course.objects.filter(id=course_id).all()[0]
+    course.user.remove(req.user)
+    course.save()
+    return redirect('/courses')

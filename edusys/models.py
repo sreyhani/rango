@@ -4,6 +4,7 @@ from django.db import models
 
 # Create your models here.
 class Course(models.Model):
+    user = models.ManyToManyField(User)
     department = models.CharField(max_length=30)
     name = models.CharField(max_length=30)
     course_number = models.IntegerField()
@@ -26,3 +27,9 @@ class Course(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to='static/avatar', null=True)
+
+# class UserProfile(models.Model):
+#     user = models.OneToOneField(User)
+#     avatar = models.ImageField(upload_to = 'pic_folder/', default = 'pic_folder/None/no-img.jpg')
+#     def __init__(self,user = None):
+#         self.user = user

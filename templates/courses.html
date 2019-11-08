@@ -11,17 +11,41 @@
 
         {% for course in courses %}
             <div class="{{ course.course_number }}_{{ course.group_number }}">
-                <h4> اسم{{ course.name }}</h4>
-                <div> دانشکده{{ course.department }}</div>
-                <div> روز{{ course.get_first_day_display }} و {{ course.get_end_day_display }}</div>
-                {#                <div>امتحان {{ course.exam_date.isoformat }}</div>#}
-                <div> ـ
-                    ساعت{{ course.start_time.hour|stringformat:"02d" }}:{{ course.start_time.minute|stringformat:"02d" }}
-                    و
-                    {{ course.second_day.hour|stringformat:"02d" }}:{{ course.second_day.minute|stringformat:"02d" }}
+                <div class="ui message">
+                    <h4> name:{{ course.name }}</h4>
+                    <div> دانشکده:{{ course.department }}</div>
+                    <div> روز:{{ course.get_first_day_display }} و {{ course.get_end_day_display }}</div>
+                    <div> ـ
+                        ساعت:{{ course.start_time.hour|stringformat:"02d" }}:{{ course.start_time.minute|stringformat:"02d" }}
+                        و
+                        {{ course.second_day.hour|stringformat:"02d" }}:{{ course.second_day.minute|stringformat:"02d" }}</div>
+                    <div>دبیر:{{ course.teacher }}</div>
+                    <a class="add" href="{% url 'get_course' course_id=course.id %}">get course</a>
                 </div>
-                <div> دبیر{{ course.teacher }}</div>
             </div>
+            <br>
+
+        {% endfor %}
+
+    </div>
+    <div id="my_courses">
+        <div class="ui message">my courses</div>
+        {% for course in my_courses %}
+            <div class="{{ course.course_number }}_{{ course.group_number }}">
+                <div class="ui message">
+                    <h4> name:{{ course.name }}</h4>
+                    <div> دانشکده:{{ course.department }}</div>
+                    <div> روز:{{ course.get_first_day_display }} و {{ course.get_end_day_display }}</div>
+                    <div> ـ
+                        ساعت:{{ course.start_time.hour|stringformat:"02d" }}:{{ course.start_time.minute|stringformat:"02d" }}
+                        و
+                        {{ course.second_day.hour|stringformat:"02d" }}:{{ course.second_day.minute|stringformat:"02d" }}</div>
+                    <div>دبیر:{{ course.teacher }}</div>
+                    <a class="remove" href="{% url 'remove_course' course_id=course.id %}">remove course</a>
+                </div>
+            </div>
+            <br>
+
         {% endfor %}
 
     </div>
