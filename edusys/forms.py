@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+from edusys.models import Course
+
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
@@ -19,3 +21,8 @@ class ContactUs(forms.Form):
     text = forms.CharField(min_length=10, max_length=250, required=True, widget=forms.Textarea, label='text')
     # class Meta:
 
+
+class CourseForm(forms.ModelForm):
+    class Meta:
+        model = Course
+        fields = "__all__"

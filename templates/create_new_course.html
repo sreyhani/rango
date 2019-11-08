@@ -7,6 +7,20 @@
 <body>
 {% extends "navbar.html" %}
 {% block body %}
+    <form method="post" action="/create_new_course/" id="make_course">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% for field in form %}
+            {% for error in field.errors %}
+                {{ error|escape }}
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            {{ error|escape }}
+        {% endfor %}
+
+        <button type="submit">submit</button>
+    </form>
 {% endblock %}
 </body>
 </html>

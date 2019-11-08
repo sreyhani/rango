@@ -8,9 +8,9 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 
-
 # Create your views here.
-from edusys.forms import ContactUs
+from edusys.forms import ContactUs, CourseForm
+from edusys.models import Course
 
 
 def home(req):
@@ -71,7 +71,7 @@ def contact_us(req):
                 title,
                 text,
                 'testforwebelopers19@gmail.com',
-                ['mahdi.haji@yahoo.com'],
+                ['webe19lopers@gmail.com'],
                 fail_silently=False,
             )
             return render(req, 'blank.html')
@@ -88,6 +88,7 @@ def profile(req):
 def panel(req):
     return render(req, "panel.html")
 
+
 @login_required(login_url='/login')
 def setting(req):
     if req.method == 'POST':
@@ -101,8 +102,18 @@ def setting(req):
             req.user.last_name = last_name
             req.user.save()
         return redirect('/profile')
-    return render(req,"setting.html")
+    return render(req, "setting.html")
 
 
 def create_new_course(req):
-    return render(req,"create_new_course.html")
+    if req.POST:
+        form = CourseForm(req.POST)
+        if form.is_valid():
+            print(form)
+            form.save()
+            return redirect('/courses')
+    return render(req, "create_new_course.html", {"form": CourseForm})
+
+
+def courses(req):
+    return render(req, "courses.html", {'courses': Course.objects.all()})

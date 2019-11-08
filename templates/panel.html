@@ -7,7 +7,9 @@
 <body>
 {% extends "navbar.html" %}
 {% block body %}
-    <a id="make_new_course" href="{% url 'create_new_course' %}">make new course</a>
-{%  endblock %}
+    <a class="ui" id="make_new_course" href="{% url 'create_new_course' %}">make new course</a>
+    <a class="ui" id='courses' href="/courses">courses</a>
+
+{% endblock %}
 </body>
 </html>

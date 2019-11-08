@@ -8,8 +8,14 @@ class Course(models.Model):
     course_number = models.IntegerField()
     group_number = models.IntegerField()
     teacher = models.CharField(max_length=30)
-    time_choices = ['0', '1', '2', '3', '4']
-    start_time = models.DateTimeField()
-    end_time = models.IntegerField(max_length=30)
-    first_day = models.CharField(max_length=1, choices=time_choices)
-    end_day = models.IntegerField(max_length=30)
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+    DAYS_OF_WEEK = [
+        (0, 'شنبه'),
+        (1, 'یکشنبه'),
+        (2, 'دوشنبه'),
+        (3, 'سه شنبه'),
+        (4, 'چهارشنبه'),
+    ]
+    first_day = models.IntegerField(choices=DAYS_OF_WEEK)
+    end_day = models.IntegerField(choices=DAYS_OF_WEEK)
